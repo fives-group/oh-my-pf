@@ -11,6 +11,6 @@ import java.io.InputStream;
 public class Resource {
 
 	public static InputStream getResourceAsStream(String path){
-		return ClassLoader.getSystemResourceAsStream("SQLMapConfig.yml");
+		return ClassLoader.getSystemResourceAsStream(path);
 	}
 }

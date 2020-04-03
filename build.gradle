@@ -2,15 +2,38 @@ plugins {
     id 'java'
 }
 
-group 'cat.wars.ohmypf'
-version '1.0-SNAPSHOT'
+apply from: this.file('common.gradle')
 
-sourceCompatibility = 11
-
-repositories {
-    mavenCentral()
+allprojects {
+    // Remote repository
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
 }
 
+apply plugin: "java"
+group this.base.groupName
+version this.base.versionName
+sourceCompatibility = this.base.javaVersion
+targetCompatibility = this.base.javaVersion
+
+tasks.withType(AbstractCompile).each { it.options.encoding = this.base.defaultEncoding }
+
+compileJava.dependsOn(processResources)
+
+test { include "**/model/**", "**/controller/**", "**/usecase/**", "**/util/**", "**/context/**" }
+
 dependencies {
-    implementation "com.amihaiemil.web:eo-yaml:4.1.0"
+    annotationProcessor "org.projectlombok:lombok:${dependVersion.lombok}"
+    compileOnly "org.projectlombok:lombok:${dependVersion.lombok}"
+
+    implementation "com.amihaiemil.web:eo-yaml:${dependVersion.eo_yaml}"
+    implementation "log4j:log4j:${dependVersion.log4j}"
+    implementation "mysql:mysql-connector-java:${dependVersion.mysql_connector}"
+    implementation "com.zaxxer:HikariCP:${dependVersion.hikari_cp}"
+
+    testCompile "org.junit.jupiter:junit-jupiter-api:${dependVersion.junit}"
+    testAnnotationProcessor "org.projectlombok:lombok:${dependVersion.lombok}"
+    testCompileOnly "org.projectlombok:lombok:${dependVersion.lombok}"
 }

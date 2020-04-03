@@ -1,0 +1,10 @@
+datasource:
+  driver-class-name: com.mysql.cj.jdbc.Driver
+  url: jdbc:mysql://rcat:3306/ompf?useUnicode=true&characterEncoding=utf8&serverTimezone=Hongkong
+  username: root
+  password: Warscat
+
+mapper:
+  prefix: mapper
+  resource:
+    - UserMapper.yml

@@ -1,0 +1,10 @@
+namespace: cat.wars.ompf.dao.UserMapper
+select:
+  - id: findList
+    sql: >
+      SELECT id,name
+      FROM user
+      WHERE id = #{id}
+       AND name = #{name}
+    paramterType: cat.wars.ompf.model.User
+    resultType: cat.wars.ompf.model.User

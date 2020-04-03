@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+}
+
+group 'cat.wars.ohmypf'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "com.amihaiemil.web:eo-yaml:4.1.0"
+}

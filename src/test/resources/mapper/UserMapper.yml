@@ -6,5 +6,5 @@ select:
       FROM user
       WHERE id = #{id}
        AND name = #{name}
-    paramterType: cat.wars.ompf.model.User
+    parameterType: cat.wars.ompf.model.User
     resultType: cat.wars.ompf.model.User

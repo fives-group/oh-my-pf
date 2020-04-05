@@ -1,14 +1,16 @@
 package cat.wars.ompf.builder.yml;
 
 import cat.wars.ompf.model.Configuration;
+import cat.wars.ompf.model.MapperStatement;
 import com.amihaiemil.eoyaml.Yaml;
 import com.amihaiemil.eoyaml.YamlMapping;
-import com.amihaiemil.eoyaml.YamlSequence;
-import com.mysql.cj.jdbc.MysqlDataSource;
+import com.zaxxer.hikari.HikariDataSource;
 import lombok.extern.log4j.Log4j;
 
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 
 /**
  * @program: oh-my-pf
@@ -19,19 +21,30 @@ import java.io.InputStream;
 @Log4j
 public class YAMLConfigBuilder {
 
-  public Configuration parseConfig(InputStream in) {
-    YamlMapping configMapping = null;
-    try {
-       configMapping = Yaml.createYamlInput(in).readYamlMapping();
-    } catch (IOException e) {
-      log.error(e.getMessage(), e);
-      System.exit(-1);
-    }
+  private Configuration configuration;
 
+  public YAMLConfigBuilder() {
+    this.configuration = new Configuration();
+  }
+
+  public Configuration parseConfig(InputStream in) throws IOException {
+    YamlMapping configMapping = Yaml.createYamlInput(in).readYamlMapping();
+    // Parse datasource
     YamlMapping datasourceMapping = configMapping.yamlMapping("datasource");
-    YamlMapping mapperMapping = configMapping.yamlMapping("mapper");
-    String mapperPrefix = mapperMapping.string("prefix");
-    YamlSequence mapperList = mapperMapping.yamlSequence("resource");
-    return null;
+    configuration.setDataSource(parseDataSource(datasourceMapping));
+    // Parse mappers
+    Map<String, Map<String, MapperStatement>> mapperMap =
+        new YAMLMapperBuilder().parseMapper(configMapping);
+    configuration.setMapperMap(mapperMap);
+    return configuration;
+  }
+
+  private DataSource parseDataSource(YamlMapping datasourceMapping) {
+    HikariDataSource dataSource = new HikariDataSource();
+    dataSource.setDriverClassName(datasourceMapping.string("driver-class-name"));
+    dataSource.setJdbcUrl(datasourceMapping.string("url"));
+    dataSource.setUsername(datasourceMapping.string("username"));
+    dataSource.setPassword(datasourceMapping.string("password"));
+    return dataSource;
   }
 }

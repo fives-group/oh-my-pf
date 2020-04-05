@@ -12,19 +12,13 @@ import java.util.Map;
  * @author: Wars
  * @created: 2020-04-03 13:04
  */
-
 @Getter
 @Setter
 public class Configuration {
 
-	/**
-	 * Datasource config
-	 */
-	private DataSource dataSource;
+  /** Datasource config */
+  private DataSource dataSource;
 
-	/**
-	 * key: Statement id
-	 * value: {@link MapperStatement}
-	 */
-	private Map<String, MapperStatement> mapperStatementMap;
+  /** Mapper map */
+  private Map<String, Map<String, MapperStatement>> mapperMap;
 }

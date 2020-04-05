@@ -13,20 +13,22 @@ import lombok.Setter;
 @Setter
 public class MapperStatement {
 
-  /**
-   * Statement id
-   */
+  public MapperStatement(String id, String type, String parameterType, String sql, String resultType) {
+    this.id = id;
+    this.type = type;
+    this.parameterType = parameterType;
+    this.sql = sql;
+    this.resultType = resultType;
+  }
+
+  /** Statement id */
   private String id;
-  /**
-   * Parameter type
-   */
+  /** Statement type */
+  private String type;
+  /** Parameter type */
   private String parameterType;
-  /**
-   * SQL content
-   */
+  /** SQL content */
   private String sql;
-  /**
-   * Result type
-   */
+  /** Result type */
   private String resultType;
 }

@@ -1,10 +1,8 @@
 namespace: cat.wars.ompf.dao.UserMapper
-select:
-  - id: findList
-    sql: >
-      SELECT id,name
-      FROM user
-      WHERE id = #{id}
-       AND name = #{name}
+statement:
+  -
+    id: findList
+    type: select
+    sql: "SELECT id,name FROM user WHERE id = #{id} AND name = #{name}"
     parameterType: cat.wars.ompf.model.User
     resultType: cat.wars.ompf.model.User

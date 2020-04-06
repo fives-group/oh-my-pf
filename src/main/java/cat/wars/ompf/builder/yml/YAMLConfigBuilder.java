@@ -21,7 +21,7 @@ import java.util.Map;
 @Log4j
 public class YAMLConfigBuilder {
 
-  private Configuration configuration;
+  private final Configuration configuration;
 
   public YAMLConfigBuilder() {
     this.configuration = new Configuration();

@@ -21,4 +21,15 @@ public class Configuration {
 
   /** Mapper map */
   private Map<String, Map<String, MapperStatement>> mapperMap;
+
+  /**
+   * Get mapper statement by namespace and statementId
+   *
+   * @param namespace Mapper namespace
+   * @param statementId Mapper statement id
+   * @return cat.wars.ompf.model.MapperStatement
+   */
+  public MapperStatement getMapperStatement(String namespace, String statementId) {
+    return mapperMap.get(namespace).get(statementId);
+  }
 }

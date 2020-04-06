@@ -7,4 +7,6 @@ package cat.wars.ompf.session;
  * @created: 2020-04-03 14:06
  */
 public interface SQLSessionFactory {
+
+  SQLSession openSession();
 }

@@ -31,4 +31,6 @@ public interface SQLSession {
    * @return Result
    */
   <E> E selectOne(String namespace, String statementId, Object... params);
+
+  <T> T getMapper(Class<T> mapper);
 }

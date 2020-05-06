@@ -1,8 +1,14 @@
-namespace: cat.wars.ompf.dao.UserMapper
+namespace: cat.wars.ompf.dao.UserDao
 statement:
   -
-    id: findList
+    id: findAll
     type: select
-    sql: "SELECT id,name FROM user WHERE id = #{id} AND name = #{name}"
+    sql: "SELECT id,name FROM user"
+    parameterType: cat.wars.ompf.model.User
+    resultType: cat.wars.ompf.model.User
+  -
+    id: findByCondition
+    type: select
+    sql: "SELECT id,name FROM user WHERE id = #{id}"
     parameterType: cat.wars.ompf.model.User
     resultType: cat.wars.ompf.model.User

@@ -31,8 +31,8 @@
 5. 创建 Executor -> SimpleExecutor
   * query(Configuration, MapperStatement, Object... params)
 
-## 2.3) 实现
-在实现过程中，由于使用了 `eo-yaml` 这个没有足够成熟的库，导致在配置文件中，SQL 不能换行问题未能解决。嘿嘿嘿嘿等更新 -。-
+### 3) 总结
+在实现过程中，由于使用了 `eo-yaml` 这个没有足够成熟的库，导致在配置文件中，SQL 不能换行问题未能解决。嘿嘿嘿嘿等更新 -。-  
 项目上传到 Github： <https://github.com/fives-group/oh-my-pf>
 * main: 框架源码
 * test: 客户端测试源码
